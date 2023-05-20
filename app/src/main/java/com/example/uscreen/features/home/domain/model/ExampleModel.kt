@@ -1,4 +1,4 @@
-package com.example.uscreen.domain.model
+package com.example.uscreen.features.home.domain.model
 
 /**
  * Created by Nikolay Yakushov on 18.05.2023.
