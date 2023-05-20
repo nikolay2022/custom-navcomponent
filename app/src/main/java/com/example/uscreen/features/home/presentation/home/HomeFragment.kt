@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.example.uscreen.databinding.FragmentHomeBinding
-import com.example.uscreen.features.home.presentation.example.ExampleViewModel
 import com.example.uscreen.utils.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 

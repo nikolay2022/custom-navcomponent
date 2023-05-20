@@ -1,5 +1,6 @@
 package com.example.uscreen.utils
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -11,11 +12,11 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
     protected abstract val binding: VB
     protected abstract val viewModel: VM
 
-    private var hideBottomNavigation: Boolean = false
+    private var args: DefaultArgs = DefaultArgs()
 
     override fun onResume() {
         super.onResume()
-        if (hideBottomNavigation) {
+        if (args.hideBottomNavigation) {
             (requireActivity() as? MainActivity)?.hideBottomNavigation()
         } else {
             (requireActivity() as? MainActivity)?.showBottomNavigation()
@@ -23,19 +24,21 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        arguments?.let {
-            hideBottomNavigation = it.getBoolean(HIDE_BOTTOM_NAVIGATION, false)
+        args = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arguments?.getSerializable(KEY, DefaultArgs::class.java) ?: DefaultArgs()
+        } else {
+            arguments?.getSerializable(KEY) as DefaultArgs
         }
         super.onCreate(savedInstanceState)
     }
 
-    fun navigateTo(directions: Int, hideBottomNavigation: Boolean = false) {
+    fun navigateTo(directions: Int, args: DefaultArgs = DefaultArgs()) {
         val bundle = Bundle()
-        bundle.putBoolean(HIDE_BOTTOM_NAVIGATION, hideBottomNavigation)
+        bundle.putSerializable(KEY, args)
         findNavController().navigate(directions, bundle)
     }
 
     private companion object {
-        const val HIDE_BOTTOM_NAVIGATION = "hideBottomNavigation"
+        const val KEY = "key"
     }
 }

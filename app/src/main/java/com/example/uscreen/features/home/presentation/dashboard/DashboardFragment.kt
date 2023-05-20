@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.example.uscreen.R
 import com.example.uscreen.databinding.FragmentDashboardBinding
 import com.example.uscreen.utils.BaseFragment
+import com.example.uscreen.utils.DefaultArgs
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
@@ -30,7 +31,7 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
         }
 
         binding.btn.setOnClickListener {
-            navigateTo(R.id.next_action, true)
+            navigateTo(R.id.next_action, DefaultArgs(true))
         }
 
         return root
