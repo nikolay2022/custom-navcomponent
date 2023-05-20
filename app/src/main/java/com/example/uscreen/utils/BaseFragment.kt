@@ -1,59 +1,41 @@
 package com.example.uscreen.utils
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavDirections
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.example.uscreen.MainActivity
-import java.io.Serializable
 
-
-open class DefaultArgs(
-    val hideBottomNavigation: Boolean = false
-): Serializable
-
-abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : DefaultArgs> : Fragment() {
+abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
 
     protected abstract val binding: VB
     protected abstract val viewModel: VM
 
-    protected var args: Args = DefaultArgs() as Args
-
-    @Suppress("UNCHECKED_CAST")
-    fun <F : BaseFragment<VB, VM, Args>> withArgs(newArgs: Args): F {
-        this.args = newArgs
-        return this as F
-    }
+    private var hideBottomNavigation: Boolean = false
 
     override fun onResume() {
         super.onResume()
-        if (args.hideBottomNavigation) {
+        if (hideBottomNavigation) {
             (requireActivity() as? MainActivity)?.hideBottomNavigation()
         } else {
             (requireActivity() as? MainActivity)?.showBottomNavigation()
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        if (args.hideBottomNavigation) {
-            (activity as? MainActivity)?.hideBottomNavigation()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        arguments?.let {
+            hideBottomNavigation = it.getBoolean(HIDE_BOTTOM_NAVIGATION, false)
         }
+        super.onCreate(savedInstanceState)
     }
 
-    override fun onDestroyView() {
-        if (args.hideBottomNavigation) {
-            (activity as? MainActivity)?.showBottomNavigation()
-        }
-        super.onDestroyView()
+    fun navigateTo(directions: Int, hideBottomNavigation: Boolean = false) {
+        val bundle = Bundle()
+        bundle.putBoolean(HIDE_BOTTOM_NAVIGATION, hideBottomNavigation)
+        findNavController().navigate(directions, bundle)
     }
 
-    fun navigateTo(directions: Int) {
-        findNavController().navigate(directions)
+    private companion object {
+        const val HIDE_BOTTOM_NAVIGATION = "hideBottomNavigation"
     }
 }

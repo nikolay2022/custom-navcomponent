@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.uscreen.features.home.presentation.HomeFragment"
+        android:name="com.example.uscreen.features.home.presentation.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.uscreen.features.home.presentation.DashboardFragment"
+        android:name="com.example.uscreen.features.home.presentation.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard">
         <!--        <action-->
@@ -29,13 +29,13 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.uscreen.features.home.presentation.NotificationsFragment"
+        android:name="com.example.uscreen.features.home.presentation.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_example"
-        android:name="com.example.uscreen.features.home.presentation.ExampleFragment"
+        android:name="com.example.uscreen.features.home.presentation.example.ExampleFragment"
         android:label="@string/title_example"
         tools:layout="@layout/fragment_example" />
 </navigation>

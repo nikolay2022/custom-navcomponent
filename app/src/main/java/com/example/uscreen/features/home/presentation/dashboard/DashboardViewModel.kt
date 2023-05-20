@@ -1,13 +1,13 @@
-package com.example.uscreen.features.home.presentation
+package com.example.uscreen.features.home.presentation.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.uscreen.utils.BaseViewModel
 
-class ExampleViewModel : BaseViewModel() {
+class DashboardViewModel : BaseViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is example Fragment"
+        value = "This is dashboard Fragment"
     }
 
     val text: LiveData<String> = _text
