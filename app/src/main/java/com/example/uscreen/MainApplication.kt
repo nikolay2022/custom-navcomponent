@@ -1,7 +1,7 @@
 package com.example.uscreen
 
 import android.app.Application
-import com.example.uscreen.features.home.di.homeModule
+import com.example.uscreen.di.homeModule
 import org.koin.core.context.startKoin
 
 /**
