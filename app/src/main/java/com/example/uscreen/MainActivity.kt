@@ -1,8 +1,8 @@
 package com.example.uscreen
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private var menuStack: ArrayDeque<Int> = ArrayDeque()
     private val backStacks: MutableMap<Int, ArrayDeque<Int>> = mutableMapOf()
-    private var flagBackPressed: Boolean = false
+    private var isBackPressed: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,24 +36,31 @@ class MainActivity : AppCompatActivity() {
         )
 
         appBarConfiguration = AppBarConfiguration(tabs)
-        bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
+        bottomNavigationView = findViewById(R.id.nav_view)
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
-            val currentFragmentId = destination.id
+            val nextFragmentId = destination.id
 
-            if (tabs.contains(currentFragmentId)) {
-                if (!flagBackPressed) {
-                    menuStack.addBackStack(currentFragmentId)
-                    backStacks.put(currentFragmentId, backStacks[currentFragmentId] ?: ArrayDeque())
+            if (tabs.contains(nextFragmentId)) {
+                if (!isBackPressed) {
+                    menuStack.addBackStack(nextFragmentId)
+                    if (backStacks[nextFragmentId] == null) {
+                        backStacks[nextFragmentId] = ArrayDeque()
+                    }
                 } else {
-                    flagBackPressed = false
+                    isBackPressed = false
                 }
-                bottomNavigationView.menu.findItem(currentFragmentId).isChecked = true
+                bottomNavigationView.menu.findItem(nextFragmentId).isChecked = true
             } else {
-                if (!flagBackPressed) {
-                    backStacks[menuStack.lastOrNull()]?.add(currentFragmentId)
+                if (!isBackPressed) {
+                    val menuLast = menuStack.lastOrNull()
+                    val backStackLast = backStacks.getOrDefault(menuLast, null)
+
+                    if (backStackLast?.lastOrNull() != nextFragmentId) {
+                        backStackLast?.add(nextFragmentId)
+                    }
                 } else {
-                    flagBackPressed = false
+                    isBackPressed = false
                 }
                 menuStack.lastOrNull()?.let {
                     bottomNavigationView.menu.findItem(it).isChecked = true
@@ -66,10 +73,7 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setOnItemSelectedListener { item ->
 
-            menuStack.apply {
-                removeIf { it == item.itemId }
-                add(item.itemId)
-            }
+            menuStack.addBackStack(item.itemId)
 
             when {
                 !backStacks[item.itemId].isNullOrEmpty() -> {
@@ -86,40 +90,49 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        flagBackPressed = true
+        isBackPressed = true
         val currentFragmentId = navController.currentDestination?.id
-        if (menuStack.isNotEmpty() && backStacks.isNotEmpty() && currentFragmentId != null) {
-            if (backStacks[menuStack.lastOrNull()].isNullOrEmpty()) {
-                menuStack.remove(menuStack.lastOrNull())
-                if (menuStack.isEmpty()) {
-                    finishAfterTransition()
-                } else {
-                    navigationWithBaskStack()
-                }
+
+        if (menuStack.isEmpty() || backStacks.isEmpty() || currentFragmentId == null) {
+            finishAfterTransition()
+            return
+        }
+
+        val menuStackLast = menuStack.last()
+        val backStackLastArray = backStacks.getOrDefault(menuStackLast, null)
+
+        if (backStackLastArray.isNullOrEmpty()) {
+            menuStack.remove(menuStackLast)
+            if (menuStack.isEmpty()) {
+                finishAfterTransition()
             } else {
-                backStacks[menuStack.lastOrNull()]?.remove(backStacks[menuStack.lastOrNull()]?.lastOrNull())
                 navigationWithBaskStack()
             }
         } else {
-            finishAfterTransition()
+            backStackLastArray.remove(backStackLastArray.last())
+            navigationWithBaskStack()
         }
     }
 
-    private fun navigationWithBaskStack(){
-        if (backStacks[menuStack.lastOrNull()].isNullOrEmpty()) {
-            navController.navigate(menuStack.last())
-        } else {
-            backStacks[menuStack.lastOrNull()]?.last()
-                ?.let { navController.navigate(it) }
-        }
+    private fun navigationWithBaskStack() {
+        val menuStackLast = menuStack.lastOrNull()
+        val backStackLastArray = backStacks.getOrDefault(menuStackLast, null)
+
+        navController.navigate(
+            if (backStackLastArray.isNullOrEmpty()) {
+                menuStack.last()
+            } else {
+                backStackLastArray.last()
+            }
+        )
     }
 
     fun hideBottomNavigation() {
-        bottomNavigationView.visibility = View.GONE
+        bottomNavigationView.isVisible = false
     }
 
     fun showBottomNavigation() {
-        bottomNavigationView.visibility = View.VISIBLE
+        bottomNavigationView.isVisible = true
     }
 }
 
