@@ -18,8 +18,6 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
     override fun initView(viewBinding: FragmentDashboardBinding, context: Context, savedInstanceState: Bundle?) {
         binding.btn.setOnClickListener {
-//            NavigationUI.onNavDestinationSelected(it, navController)
-
             navigateTo(R.id.next_action, DefaultArgs(false))
         }
     }

@@ -2,18 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_dashboard"
+    android:id="@+id/dashboard_navigation">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.uscreen.features.home.presentation.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home">
-    </fragment>
-
-    <fragment
-        android:id="@id/navigation_dashboard"
+        android:id="@+id/navigation_dashboard"
         android:name="com.example.uscreen.features.dashboard.presentation.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard">
@@ -21,12 +14,6 @@
             android:id="@+id/next_action"
             app:destination="@id/navigation_example" />
     </fragment>
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.uscreen.features.notifications.presentation.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_example"

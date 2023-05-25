@@ -23,5 +23,8 @@ class ExampleFragment : BaseFragment<FragmentExampleBinding, ExampleViewModel, D
         viewModel.text.launchOnStarted(viewLifecycleOwner) {
             binding.textExample.text = it
         }
+        binding.btn.setOnClickListener {
+            navigateTo(R.id.next_action_examplee, DefaultArgs(false))
+        }
     }
 }

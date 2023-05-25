@@ -2,6 +2,7 @@ package com.example.uscreen.di
 
 import com.example.uscreen.features.dashboard.presentation.DashboardViewModel
 import com.example.uscreen.features.example.presentation.ExampleViewModel
+import com.example.uscreen.features.examplee.presentation.ExampleeViewModel
 import com.example.uscreen.features.home.presentation.HomeViewModel
 import com.example.uscreen.features.notifications.presentation.NotificationsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -15,4 +16,5 @@ val homeModule = module {
     viewModel { ExampleViewModel() }
     viewModel { HomeViewModel() }
     viewModel { NotificationsViewModel() }
+    viewModel { ExampleeViewModel() }
 }

@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.example.uscreen.MainActivity
@@ -72,7 +74,16 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : Default
 
     protected fun navigateTo(directions: Int, args: DefaultArgs = DefaultArgs()) {
         val bundle = Bundle().apply { putSerializable(KEY_ARGS, args) }
-        findNavController().navigate(directions, bundle)
+        val navOptions = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setRestoreState(true)
+            .setPopUpTo(
+                findNavController().graph.findStartDestination().id,
+                inclusive = false
+            )
+            .build()
+
+        findNavController().navigate(directions)
     }
 
     private fun attachViewModel(viewModel: VM) {

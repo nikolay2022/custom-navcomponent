@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.dashboard.presentation.DashboardFragment">
+    tools:context=".features.examplee.presentation.ExampleeFragment">
 
     <TextView
-        android:id="@+id/text_dashboard"
+        android:id="@+id/text_example"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -20,12 +20,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btn"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/textInputEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to example"
-        app:layout_constraintTop_toBottomOf="@id/text_dashboard"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_example" />
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
