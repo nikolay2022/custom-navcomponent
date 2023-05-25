@@ -24,15 +24,16 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : Default
     protected var args: Args = DefaultArgs() as Args
     private var hasViewModelAttached = false
 
-    private val viewLifecycleOwnerLiveDataObserver = Observer<LifecycleOwner?> { viewLifecycleOwner ->
-        viewLifecycleOwner?.lifecycle?.addObserver(object : DefaultLifecycleObserver {
-            override fun onDestroy(owner: LifecycleOwner) {
-                if (hasViewModelAttached) {
-                    detachViewModel(viewModel)
+    private val viewLifecycleOwnerLiveDataObserver =
+        Observer<LifecycleOwner?> { viewLifecycleOwner ->
+            viewLifecycleOwner?.lifecycle?.addObserver(object : DefaultLifecycleObserver {
+                override fun onDestroy(owner: LifecycleOwner) {
+                    if (hasViewModelAttached) {
+                        detachViewModel(viewModel)
+                    }
                 }
-            }
-        })
-    }
+            })
+        }
 
     protected abstract fun onViewModelAttached(viewModel: VM)
 
@@ -60,7 +61,11 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : Default
         super.onCreate(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return binding.root
     }
 
@@ -74,16 +79,15 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : Default
 
     protected fun navigateTo(directions: Int, args: DefaultArgs = DefaultArgs()) {
         val bundle = Bundle().apply { putSerializable(KEY_ARGS, args) }
-        val navOptions = NavOptions.Builder()
+        val builder = NavOptions.Builder()
             .setLaunchSingleTop(true)
             .setRestoreState(true)
             .setPopUpTo(
                 findNavController().graph.findStartDestination().id,
-                inclusive = false
+                inclusive = false,
+                saveState = true
             )
-            .build()
-
-        findNavController().navigate(directions)
+        findNavController().navigate(directions, bundle, builder.build())
     }
 
     private fun attachViewModel(viewModel: VM) {
