@@ -2,6 +2,7 @@ package com.example.uscreen.features.dashboard.presentation
 
 import android.content.Context
 import android.os.Bundle
+import androidx.navigation.ui.NavigationUI
 import com.example.uscreen.R
 import com.example.uscreen.base.BaseFragment
 import com.example.uscreen.base.DefaultArgs
@@ -17,6 +18,8 @@ class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewMo
 
     override fun initView(viewBinding: FragmentDashboardBinding, context: Context, savedInstanceState: Bundle?) {
         binding.btn.setOnClickListener {
+//            NavigationUI.onNavDestinationSelected(it, navController)
+
             navigateTo(R.id.next_action, DefaultArgs(false))
         }
     }

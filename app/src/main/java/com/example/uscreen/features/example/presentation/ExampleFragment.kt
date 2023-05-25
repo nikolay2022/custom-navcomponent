@@ -2,6 +2,10 @@ package com.example.uscreen.features.example.presentation
 
 import android.content.Context
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import com.example.uscreen.R
 import com.example.uscreen.base.BaseFragment
 import com.example.uscreen.base.DefaultArgs
 import com.example.uscreen.databinding.FragmentExampleBinding
