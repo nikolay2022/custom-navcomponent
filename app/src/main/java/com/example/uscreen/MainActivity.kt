@@ -13,14 +13,15 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.uscreen.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+var menuStack: ArrayDeque<Int> = ArrayDeque()
+val backStacks: MutableMap<Int, ArrayDeque<Int>> = mutableMapOf()
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
-    private var menuStack: ArrayDeque<Int> = ArrayDeque()
-    private val backStacks: MutableMap<Int, ArrayDeque<Int>> = mutableMapOf()
     private var isBackPressed: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,23 +77,24 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setOnItemSelectedListener { item ->
 
-            menuStack.addBackStack(item.itemId)
             val builder = NavOptions.Builder()
                 .setLaunchSingleTop(true)
-                .setRestoreState(true)
+                .setRestoreState(menuStack.contains(item.itemId))
                 .setPopUpTo(
                     navController.graph.findStartDestination().id,
                     inclusive = false,
                     saveState = true
                 )
+            menuStack.addBackStack(item.itemId)
 
             when {
                 !backStacks[item.itemId].isNullOrEmpty() -> {
-                    backStacks[item.itemId]?.last()?.let { navController.navigate(it,null,builder.build()) }
+                    backStacks[item.itemId]?.last()
+                        ?.let { navController.navigate(it, null, builder.build()) }
                 }
 
                 else -> {
-                    navController.navigate(item.itemId,null,builder.build())
+                    navController.navigate(item.itemId, null, builder.build())
                 }
             }
 
@@ -113,28 +115,46 @@ class MainActivity : AppCompatActivity() {
         val backStackLastArray = backStacks.getOrDefault(menuStackLast, null)
 
         if (backStackLastArray.isNullOrEmpty()) {
-            menuStack.remove(menuStackLast)
+                menuStack.remove(menuStackLast)
             if (menuStack.isEmpty()) {
                 finishAfterTransition()
             } else {
                 navigationWithBaskStack()
+//                navController.des
+//                navController.graph.startDestinationId = R.id.navigation_home
 
-                val field = NavController::class.java.getDeclaredField("backQueue")
-                field.isAccessible = true
-                val spisok = field.get(navController) as ArrayDeque<NavBackStackEntry>
-                spisok.removeIf{it.destination.id == currentFragmentId}
-                field.set(navController, spisok)
 
+//                val field = NavController::class.java.getDeclaredField("backQueue")
+//                field.isAccessible = true
+//                val spisok = field.get(navController) as ArrayDeque<NavBackStackEntry>
+//                spisok.removeIf { it.destination.id == menuStackLast }
+//                field.set(navController, spisok)
+//
+//                val field1 = NavController::class.java.getDeclaredField("backStackMap")
+//                field1.isAccessible = true
+//                val spisok1 = field1.get(navController) as MutableMap<Int, String?>
+//                if (spisok1.getOrDefault(currentFragmentId, null) != null) {
+//                    spisok1.replace(currentFragmentId, null)
+//                }
+//                field1.set(navController, spisok1)
             }
         } else {
             backStackLastArray.remove(backStackLastArray.last())
             navigationWithBaskStack()
 
-            val field = NavController::class.java.getDeclaredField("backQueue")
-            field.isAccessible = true
-            val spisok = field.get(navController) as ArrayDeque<NavBackStackEntry>
-            spisok.removeIf{it.destination.id == currentFragmentId}
-            field.set(navController, spisok)
+//            val field = NavController::class.java.getDeclaredField("backQueue")
+//            field.isAccessible = true
+//            val spisok = field.get(navController) as ArrayDeque<NavBackStackEntry>
+//            spisok.removeIf { it.destination.id == backStackLastArray.last() }
+//            field.set(navController, spisok)
+//
+//            val field1 = NavController::class.java.getDeclaredField("backStackMap")
+//            field1.isAccessible = true
+//            val spisok1 = field1.get(navController) as MutableMap<Int, String?>
+//            if (spisok1.getOrDefault(currentFragmentId, null) != null) {
+//                spisok1.replace(currentFragmentId, null)
+//            }
+//            field1.set(navController, spisok1)
         }
     }
 
@@ -145,11 +165,7 @@ class MainActivity : AppCompatActivity() {
         val builder = NavOptions.Builder()
             .setLaunchSingleTop(true)
             .setRestoreState(true)
-            .setPopUpTo(
-                navController.graph.findStartDestination().id,
-                inclusive = false,
-                saveState = true
-            )
+
         navController.navigate(
             if (backStackLastArray.isNullOrEmpty()) {
                 menuStack.last()

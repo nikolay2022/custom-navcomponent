@@ -15,6 +15,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.example.uscreen.MainActivity
+import com.example.uscreen.backStacks
+import com.example.uscreen.menuStack
 
 abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : DefaultArgs> : Fragment() {
 
@@ -81,7 +83,15 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : Default
         val bundle = Bundle().apply { putSerializable(KEY_ARGS, args) }
         val builder = NavOptions.Builder()
             .setLaunchSingleTop(true)
-            .setRestoreState(true)
+
+        var kk = false
+        backStacks.forEach { t, u ->
+            if (t == directions || u.contains(directions)) {
+                kk = true
+            }
+        }
+
+        builder.setRestoreState(kk)
             .setPopUpTo(
                 findNavController().graph.findStartDestination().id,
                 inclusive = false,
