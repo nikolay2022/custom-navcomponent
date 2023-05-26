@@ -142,12 +142,21 @@ class MainActivity : AppCompatActivity() {
         val menuStackLast = menuStack.lastOrNull()
         val backStackLastArray = backStacks.getOrDefault(menuStackLast, null)
 
+        val builder = NavOptions.Builder()
+            .setLaunchSingleTop(true)
+            .setRestoreState(true)
+            .setPopUpTo(
+                navController.graph.findStartDestination().id,
+                inclusive = false,
+                saveState = true
+            )
         navController.navigate(
             if (backStackLastArray.isNullOrEmpty()) {
                 menuStack.last()
             } else {
                 backStackLastArray.last()
-            }
+            },
+            null, builder.build()
         )
     }
 
