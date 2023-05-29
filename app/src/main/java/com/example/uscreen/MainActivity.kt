@@ -122,8 +122,6 @@ class MainActivity : AppCompatActivity() {
                 navigationWithBaskStack()
 //                navController.des
 //                navController.graph.startDestinationId = R.id.navigation_home
-
-
 //                val field = NavController::class.java.getDeclaredField("backQueue")
 //                field.isAccessible = true
 //                val spisok = field.get(navController) as ArrayDeque<NavBackStackEntry>
@@ -164,7 +162,12 @@ class MainActivity : AppCompatActivity() {
 
         val builder = NavOptions.Builder()
             .setLaunchSingleTop(true)
-            .setRestoreState(true)
+            .setRestoreState(!(backStackLastArray.isNullOrEmpty() && menuStack.last() == R.id.navigation_home))
+            .setPopUpTo(
+                navController.graph.findStartDestination().id,
+                inclusive = false,
+                saveState = true
+            )
 
         navController.navigate(
             if (backStackLastArray.isNullOrEmpty()) {
