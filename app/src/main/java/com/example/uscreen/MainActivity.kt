@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.uscreen.databinding.ActivityMainBinding
+import com.example.uscreen.utils.viewBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 var menuStack: ArrayDeque<Int> = ArrayDeque()
@@ -18,8 +19,11 @@ val backStacks: MutableMap<Int, ArrayDeque<Int>> = mutableMapOf()
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var binding: ActivityMainBinding
+    private val bottomNavigationView: BottomNavigationView by lazy {
+        binding.navView
+    }
+    private val binding: ActivityMainBinding by viewBinding(ActivityMainBinding::inflate)
+
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
     private var isBackPressed: Boolean = false
@@ -27,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val navHostFragment = supportFragmentManager
@@ -40,7 +43,6 @@ class MainActivity : AppCompatActivity() {
         )
 
         appBarConfiguration = AppBarConfiguration(tabs)
-        bottomNavigationView = findViewById(R.id.nav_view)
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             val nextFragmentId = destination.id

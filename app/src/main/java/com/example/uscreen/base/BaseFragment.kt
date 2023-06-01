@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
+import androidx.annotation.StyleRes
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -21,6 +24,9 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : Default
 
     protected abstract val binding: VB
     protected abstract val viewModel: VM
+
+    @get:LayoutRes
+    protected abstract val layoutRes: Int
 
     protected var args: Args = DefaultArgs() as Args
     private var hasViewModelAttached = false
@@ -67,7 +73,17 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : Default
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return binding.root
+        viewLifecycleOwnerLiveData.observeForever(viewLifecycleOwnerLiveDataObserver)
+        val customTheme = getCustomTheme()
+        return if (customTheme != 0) {
+            // create ContextThemeWrapper from the original Activity Context with the custom theme
+            val contextThemeWrapper: Context = ContextThemeWrapper(activity, customTheme)
+            // clone the inflater using the ContextThemeWrapper
+            val localInflater = inflater.cloneInContext(contextThemeWrapper)
+            localInflater.inflate(layoutRes, container, false)
+        } else {
+            inflater.inflate(layoutRes, container, false)
+        }
     }
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,13 +94,18 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : Default
         }
     }
 
+    @StyleRes
+    protected open fun getCustomTheme(): Int {
+        return 0
+    }
+
     protected fun navigateTo(directions: Int, args: DefaultArgs = DefaultArgs()) {
         val bundle = Bundle().apply { putSerializable(KEY_ARGS, args) }
         val builder = NavOptions.Builder()
             .setLaunchSingleTop(true)
 
         var restoreState = false
-        backStacks.forEach { t, u ->
+        backStacks.forEach { (t, u) ->
             if (t == directions || u.contains(directions)) {
                 restoreState = true
             }

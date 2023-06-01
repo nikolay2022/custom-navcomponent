@@ -10,12 +10,14 @@ import com.example.uscreen.base.BaseFragment
 import com.example.uscreen.base.DefaultArgs
 import com.example.uscreen.databinding.FragmentExampleBinding
 import com.example.uscreen.utils.launchOnStarted
+import com.example.uscreen.utils.viewBinding
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class ExampleFragment : BaseFragment<FragmentExampleBinding, ExampleViewModel, DefaultArgs>() {
 
-    override val binding by lazy { FragmentExampleBinding.inflate(layoutInflater) }
+    override val binding by viewBinding(FragmentExampleBinding::bind)
     override val viewModel by lazy { getViewModel<ExampleViewModel>() }
+    override val layoutRes: Int = R.layout.fragment_example
 
     override fun initView(viewBinding: FragmentExampleBinding, context: Context, savedInstanceState: Bundle?) {}
 

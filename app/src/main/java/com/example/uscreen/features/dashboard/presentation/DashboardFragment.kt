@@ -8,13 +8,15 @@ import com.example.uscreen.base.BaseFragment
 import com.example.uscreen.base.DefaultArgs
 import com.example.uscreen.databinding.FragmentDashboardBinding
 import com.example.uscreen.utils.launchOnCreated
+import com.example.uscreen.utils.viewBinding
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel, DefaultArgs>() {
 
-    override val binding by lazy { FragmentDashboardBinding.inflate(layoutInflater) }
+    override val binding by viewBinding(FragmentDashboardBinding::bind)
     override val viewModel by lazy { getViewModel<DashboardViewModel>() }
+    override val layoutRes: Int = R.layout.fragment_dashboard
 
     override fun initView(viewBinding: FragmentDashboardBinding, context: Context, savedInstanceState: Bundle?) {
         binding.btn.setOnClickListener {
