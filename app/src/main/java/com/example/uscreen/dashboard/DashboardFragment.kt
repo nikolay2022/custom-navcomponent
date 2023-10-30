@@ -1,15 +1,13 @@
-package com.example.uscreen.features.home.presentation
+package com.example.uscreen.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.example.uscreen.R
 import com.example.uscreen.databinding.FragmentDashboardBinding
-import com.example.uscreen.databinding.FragmentHomeBinding
+import com.example.uscreen.detail.ExampleFragment
 import com.example.uscreen.utils.BaseFragment
 import com.example.uscreen.utils.DefaultArgs
 
@@ -42,13 +40,6 @@ class DashboardFragment :
         return root
     }
 
-    companion object {
-        fun newInstance(): ExampleFragment =
-            ExampleFragment().withArgs(
-                DefaultArgs(true)
-            )
-
-    }
 }
 
 

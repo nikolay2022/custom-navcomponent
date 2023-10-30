@@ -1,4 +1,4 @@
-package com.example.uscreen.features.home.presentation
+package com.example.uscreen.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.uscreen.databinding.FragmentNotificationsBinding
+import com.example.uscreen.databinding.FragmentExampleBinding
 
-class NotificationsFragment : Fragment() {
+class ExampleFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentExampleBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -23,15 +23,17 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val notificationsViewModel =
-            ViewModelProvider(this).get(NotificationsViewModel::class.java)
+            ViewModelProvider(this).get(ExampleViewModel::class.java)
 
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentExampleBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
+        val textView: TextView = binding.textExample
         notificationsViewModel.text.observe(viewLifecycleOwner) {
+            //возможно тут надо переключить активнй таб
             textView.text = it
         }
+
         return root
     }
 

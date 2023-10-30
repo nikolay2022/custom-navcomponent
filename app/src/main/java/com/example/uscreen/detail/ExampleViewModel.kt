@@ -1,14 +1,14 @@
-package com.example.uscreen.features.home.presentation
+package com.example.uscreen.detail
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.uscreen.utils.BaseViewModel
 
-class NotificationsViewModel : BaseViewModel() {
+class ExampleViewModel : BaseViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is example Fragment"
     }
+
     val text: LiveData<String> = _text
 }

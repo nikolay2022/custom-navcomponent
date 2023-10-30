@@ -1,8 +1,7 @@
-package com.example.uscreen.features.home.presentation
+package com.example.uscreen.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.uscreen.utils.BaseViewModel
 
 class DashboardViewModel : BaseViewModel() {

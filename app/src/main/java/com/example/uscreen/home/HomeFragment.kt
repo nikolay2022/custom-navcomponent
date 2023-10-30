@@ -1,4 +1,4 @@
-package com.example.uscreen.features.home.presentation
+package com.example.uscreen.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
-import com.example.uscreen.R
 import com.example.uscreen.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -34,7 +32,6 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-//        findNavController().navigate(R.id.next_action)
         return root
     }
 
