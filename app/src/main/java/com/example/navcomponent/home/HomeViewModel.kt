@@ -1,8 +1,8 @@
-package com.example.uscreen.home
+package com.example.navcomponent.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.uscreen.utils.BaseViewModel
+import com.example.navcomponent.utils.BaseViewModel
 
 class HomeViewModel : BaseViewModel() {
 

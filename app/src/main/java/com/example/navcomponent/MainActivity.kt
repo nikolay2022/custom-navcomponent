@@ -1,15 +1,12 @@
-package com.example.uscreen
+package com.example.navcomponent
 
 import android.os.Bundle
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.uscreen.databinding.ActivityMainBinding
+import com.example.navcomponent.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

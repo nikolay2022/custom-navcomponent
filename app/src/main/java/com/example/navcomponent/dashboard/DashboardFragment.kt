@@ -1,16 +1,14 @@
-package com.example.uscreen.dashboard
+package com.example.navcomponent.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.example.uscreen.R
-import com.example.uscreen.databinding.FragmentDashboardBinding
-import com.example.uscreen.detail.ExampleFragment
-import com.example.uscreen.utils.BaseFragment
-import com.example.uscreen.utils.DefaultArgs
-
+import com.example.navcomponent.R
+import com.example.navcomponent.databinding.FragmentDashboardBinding
+import com.example.navcomponent.utils.BaseFragment
+import com.example.navcomponent.utils.DefaultArgs
 
 class DashboardFragment :
     BaseFragment<FragmentDashboardBinding, DashboardViewModel, DefaultArgs>() {
@@ -33,7 +31,6 @@ class DashboardFragment :
         }
 
         binding.btn.setOnClickListener {
-            //TODO: передача параметров
             navigateTo(R.id.next_action)
         }
 

@@ -1,4 +1,4 @@
-package com.example.uscreen.home
+package com.example.navcomponent.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.uscreen.databinding.FragmentHomeBinding
+import com.example.navcomponent.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 

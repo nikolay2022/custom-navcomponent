@@ -1,8 +1,8 @@
-package com.example.uscreen.notifications
+package com.example.navcomponent.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.uscreen.utils.BaseViewModel
+import com.example.navcomponent.utils.BaseViewModel
 
 class NotificationsViewModel : BaseViewModel() {
 
