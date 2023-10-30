@@ -1,8 +1,7 @@
-package com.example.uscreen.features.dashboard.presentation
+package com.example.uscreen.features.dashboard
 
 import android.content.Context
 import android.os.Bundle
-import androidx.navigation.ui.NavigationUI
 import com.example.uscreen.R
 import com.example.uscreen.base.BaseFragment
 import com.example.uscreen.base.DefaultArgs

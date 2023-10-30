@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.dashboard.presentation.DashboardFragment">
+    tools:context=".features.dashboard.DashboardFragment">
 
     <TextView
         android:id="@+id/text_dashboard"
@@ -24,7 +24,7 @@
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to example"
+        android:text="@string/go_to_detail"
         app:layout_constraintTop_toBottomOf="@id/text_dashboard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

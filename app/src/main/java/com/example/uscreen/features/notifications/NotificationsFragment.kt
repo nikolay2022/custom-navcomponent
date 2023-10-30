@@ -1,4 +1,4 @@
-package com.example.uscreen.features.notifications.presentation
+package com.example.uscreen.features.notifications
 
 import android.content.Context
 import android.os.Bundle

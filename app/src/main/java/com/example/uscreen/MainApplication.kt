@@ -1,8 +1,7 @@
 package com.example.uscreen
 
 import android.app.Application
-import androidx.navigation.NavController
-import com.example.uscreen.di.homeModule
+import com.example.uscreen.di.module
 import org.koin.core.context.startKoin
 
 /**
@@ -15,7 +14,7 @@ class MainApplication : Application() {
 
         startKoin {
             modules(
-                homeModule,
+                module,
             )
         }
     }

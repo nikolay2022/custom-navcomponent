@@ -37,9 +37,6 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
         viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onDestroy(owner: LifecycleOwner) {
                 binding = null
-//                Logger.logDebug(
-//                    TAG, "view binding released for ${fragment.javaClass.simpleName}"
-//                )
             }
         })
     }
@@ -81,7 +78,6 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
         return binder(thisRef.requireView())
             .also {
                 this.binding = it
-//                Logger.logDebug(TAG, "binding view for ${fragment.javaClass.simpleName}")
             }
     }
 

@@ -122,39 +122,10 @@ class MainActivity : AppCompatActivity() {
                 finishAfterTransition()
             } else {
                 navigationWithBaskStack()
-//                navController.des
-//                navController.graph.startDestinationId = R.id.navigation_home
-//                val field = NavController::class.java.getDeclaredField("backQueue")
-//                field.isAccessible = true
-//                val spisok = field.get(navController) as ArrayDeque<NavBackStackEntry>
-//                spisok.removeIf { it.destination.id == menuStackLast }
-//                field.set(navController, spisok)
-//
-//                val field1 = NavController::class.java.getDeclaredField("backStackMap")
-//                field1.isAccessible = true
-//                val spisok1 = field1.get(navController) as MutableMap<Int, String?>
-//                if (spisok1.getOrDefault(currentFragmentId, null) != null) {
-//                    spisok1.replace(currentFragmentId, null)
-//                }
-//                field1.set(navController, spisok1)
             }
         } else {
             backStackLastArray.remove(backStackLastArray.last())
             navigationWithBaskStack()
-
-//            val field = NavController::class.java.getDeclaredField("backQueue")
-//            field.isAccessible = true
-//            val spisok = field.get(navController) as ArrayDeque<NavBackStackEntry>
-//            spisok.removeIf { it.destination.id == backStackLastArray.last() }
-//            field.set(navController, spisok)
-//
-//            val field1 = NavController::class.java.getDeclaredField("backStackMap")
-//            field1.isAccessible = true
-//            val spisok1 = field1.get(navController) as MutableMap<Int, String?>
-//            if (spisok1.getOrDefault(currentFragmentId, null) != null) {
-//                spisok1.replace(currentFragmentId, null)
-//            }
-//            field1.set(navController, spisok1)
         }
     }
 

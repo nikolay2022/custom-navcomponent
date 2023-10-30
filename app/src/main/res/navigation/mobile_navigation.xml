@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.uscreen.features.home.presentation.HomeFragment"
+        android:name="com.example.uscreen.features.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home">
     </fragment>
 
     <fragment
         android:id="@id/navigation_dashboard"
-        android:name="com.example.uscreen.features.dashboard.presentation.DashboardFragment"
+        android:name="com.example.uscreen.features.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard">
         <action
@@ -24,13 +24,13 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.uscreen.features.notifications.presentation.NotificationsFragment"
+        android:name="com.example.uscreen.features.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_example"
-        android:name="com.example.uscreen.features.example.presentation.ExampleFragment"
+        android:name="com.example.uscreen.features.detail.DetailFragment"
         android:label="examplee"
         tools:layout="@layout/fragment_example">
         <action
@@ -40,7 +40,7 @@
 
     <fragment
         android:id="@+id/navigation_examplee"
-        android:name="com.example.uscreen.features.examplee.presentation.ExampleeFragment"
+        android:name="com.example.uscreen.features.examplee.ExampleeFragment"
         android:label="uhiu"
         tools:layout="@layout/fragment_examplee" />
 

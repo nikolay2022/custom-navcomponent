@@ -1,4 +1,4 @@
-package com.example.uscreen.features.home.presentation
+package com.example.uscreen.features.home
 
 import android.content.Context
 import android.os.Bundle

@@ -1,13 +1,13 @@
-package com.example.uscreen.features.notifications.presentation
+package com.example.uscreen.features.detail
 
 import com.example.uscreen.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class NotificationsViewModel : BaseViewModel() {
+class DetailViewModel : BaseViewModel() {
 
-    private val _text = MutableStateFlow("This is notifications Fragment")
+    private val _text = MutableStateFlow("This is detail Fragment")
     val text: StateFlow<String> = _text.asStateFlow()
 
 }
