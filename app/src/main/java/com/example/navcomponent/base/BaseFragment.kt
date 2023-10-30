@@ -1,4 +1,4 @@
-package com.example.uscreen.base
+package com.example.navcomponent.base
 
 import android.content.Context
 import android.os.Build
@@ -17,8 +17,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
-import com.example.uscreen.MainActivity
-import com.example.uscreen.backStacks
+import com.example.navcomponent.MainActivity
+import com.example.navcomponent.backStacks
 
 abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel, Args : DefaultArgs> : Fragment() {
 

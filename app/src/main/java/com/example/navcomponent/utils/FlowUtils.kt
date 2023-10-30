@@ -1,4 +1,4 @@
-package com.example.uscreen.utils
+package com.example.navcomponent.utils
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

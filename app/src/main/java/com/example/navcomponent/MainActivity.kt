@@ -1,17 +1,16 @@
-package com.example.uscreen
+package com.example.navcomponent
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.example.uscreen.databinding.ActivityMainBinding
-import com.example.uscreen.utils.viewBinding
+import com.example.navcomponent.databinding.ActivityMainBinding
+import com.example.navcomponent.utils.viewBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 var menuStack: ArrayDeque<Int> = ArrayDeque()

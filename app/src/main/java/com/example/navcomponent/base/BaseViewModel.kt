@@ -1,4 +1,4 @@
-package com.example.uscreen.base
+package com.example.navcomponent.base
 
 import androidx.lifecycle.ViewModel
 

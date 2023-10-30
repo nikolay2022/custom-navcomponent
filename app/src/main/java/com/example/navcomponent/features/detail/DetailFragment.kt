@@ -1,13 +1,13 @@
-package com.example.uscreen.features.detail
+package com.example.navcomponent.features.detail
 
 import android.content.Context
 import android.os.Bundle
-import com.example.uscreen.R
-import com.example.uscreen.base.BaseFragment
-import com.example.uscreen.base.DefaultArgs
-import com.example.uscreen.databinding.FragmentExampleBinding
-import com.example.uscreen.utils.launchOnStarted
-import com.example.uscreen.utils.viewBinding
+import com.example.navcomponent.R
+import com.example.navcomponent.base.BaseFragment
+import com.example.navcomponent.base.DefaultArgs
+import com.example.navcomponent.databinding.FragmentExampleBinding
+import com.example.navcomponent.utils.launchOnStarted
+import com.example.navcomponent.utils.viewBinding
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class DetailFragment : BaseFragment<FragmentExampleBinding, DetailViewModel, DefaultArgs>() {

@@ -1,7 +1,7 @@
-package com.example.uscreen
+package com.example.navcomponent
 
 import android.app.Application
-import com.example.uscreen.di.module
+import com.example.navcomponent.di.module
 import org.koin.core.context.startKoin
 
 /**

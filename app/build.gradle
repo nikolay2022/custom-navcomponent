@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.uscreen'
+    namespace 'com.example.navcomponent'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.uscreen"
+        applicationId "com.example.navcomponent"
         minSdk 24
         targetSdk 33
         versionCode 1

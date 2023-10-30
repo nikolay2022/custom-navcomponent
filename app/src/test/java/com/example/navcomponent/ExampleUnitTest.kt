@@ -1,4 +1,4 @@
-package com.example.uscreen
+package com.example.navcomponent
 
 import org.junit.Test
 

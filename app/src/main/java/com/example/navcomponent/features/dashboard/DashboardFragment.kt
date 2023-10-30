@@ -1,15 +1,14 @@
-package com.example.uscreen.features.dashboard
+package com.example.navcomponent.features.dashboard
 
 import android.content.Context
 import android.os.Bundle
-import com.example.uscreen.R
-import com.example.uscreen.base.BaseFragment
-import com.example.uscreen.base.DefaultArgs
-import com.example.uscreen.databinding.FragmentDashboardBinding
-import com.example.uscreen.utils.launchOnCreated
-import com.example.uscreen.utils.viewBinding
+import com.example.navcomponent.R
+import com.example.navcomponent.base.BaseFragment
+import com.example.navcomponent.base.DefaultArgs
+import com.example.navcomponent.databinding.FragmentDashboardBinding
+import com.example.navcomponent.utils.launchOnCreated
+import com.example.navcomponent.utils.viewBinding
 import org.koin.androidx.viewmodel.ext.android.getViewModel
-
 
 class DashboardFragment : BaseFragment<FragmentDashboardBinding, DashboardViewModel, DefaultArgs>() {
 

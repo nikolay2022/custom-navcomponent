@@ -1,6 +1,6 @@
-package com.example.uscreen.features.dashboard
+package com.example.navcomponent.features.dashboard
 
-import com.example.uscreen.base.BaseViewModel
+import com.example.navcomponent.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

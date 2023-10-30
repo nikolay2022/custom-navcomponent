@@ -1,6 +1,6 @@
-package com.example.uscreen.features.notifications
+package com.example.navcomponent.features.notifications
 
-import com.example.uscreen.base.BaseViewModel
+import com.example.navcomponent.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

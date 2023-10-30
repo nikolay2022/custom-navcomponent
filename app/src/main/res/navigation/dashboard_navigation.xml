@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.uscreen.features.dashboard.DashboardFragment"
+        android:name="com.example.navcomponent.features.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_example"
-        android:name="com.example.uscreen.features.detail.DetailFragment"
+        android:name="com.example.navcomponent.features.detail.DetailFragment"
         android:label="examplee"
         tools:layout="@layout/fragment_example">
         <action

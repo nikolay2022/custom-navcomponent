@@ -1,13 +1,13 @@
-package com.example.uscreen.features.notifications
+package com.example.navcomponent.features.notifications
 
 import android.content.Context
 import android.os.Bundle
-import com.example.uscreen.R
-import com.example.uscreen.base.BaseFragment
-import com.example.uscreen.base.DefaultArgs
-import com.example.uscreen.databinding.FragmentNotificationsBinding
-import com.example.uscreen.utils.launchOnStarted
-import com.example.uscreen.utils.viewBinding
+import com.example.navcomponent.R
+import com.example.navcomponent.base.BaseFragment
+import com.example.navcomponent.base.DefaultArgs
+import com.example.navcomponent.databinding.FragmentNotificationsBinding
+import com.example.navcomponent.utils.launchOnStarted
+import com.example.navcomponent.utils.viewBinding
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class NotificationsFragment : BaseFragment<FragmentNotificationsBinding, NotificationsViewModel, DefaultArgs>() {
